@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.frank.blog.dao.mapper.TagMapper">
+
+    <select id="getTagsByArticleId" resultType="com.frank.blog.dao.pojo.Tag" parameterType="long">
+        select id,avatar,tag_name as tagName from frank_tag
+        where id in
+              (select tag_id from frank_article_tag where article_id = #{articleId})
+    </select>
+
+<!--    List<Long> getHotTagIds(int limit);-->
+    <select id="getHotTagIds" resultType="java.lang.Long" parameterType="int">
+        select tag_id from frank_article_tag group by tag_id order by count(1) desc limit #{limit}
+    </select>
+</mapper>

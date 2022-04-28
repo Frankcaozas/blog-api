@@ -1,0 +1,40 @@
+
+spring:
+  application:
+    name: frank_blog
+  datasource:
+    url: jdbc:mysql://ip/blog?useUnicode=true&characterEncoding=UTF-8&serverTimeZone=UTC&useSSL=false
+    username: root
+    password: pwd
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    host: ip
+    port: 6379
+    password: pwd
+  servlet:
+    multipart:
+      max-request-size: 20MB
+      max-file-size: 2MB
+  cache:
+    type: redis
+    redis:
+      time-to-live: 300000
+      cache-null-values: true
+
+server:
+  port: 8888
+  servlet:
+    context-path: /api
+
+
+mybatis-plus:
+  global-config:
+    db-config:
+      table-prefix: frank_
+
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# datasource
+
+
